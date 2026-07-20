@@ -31,3 +31,5 @@ npm test
 ```
 
 O teste executa o build e confirma a renderização do portfólio, os arquivos das quatro demonstrações e a disponibilidade do currículo.
+
+O comando padrão `npm run build` gera a saída nativa do Next.js em `.next`, compatível com o Vercel. Para gerar a versão Vinext usada pelo Sites, execute `npm run build:sites`.
