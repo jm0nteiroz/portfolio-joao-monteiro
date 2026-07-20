@@ -57,3 +57,6 @@
 .site-footer{margin:14px 38px 0;padding:22px 0 25px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-top:1px solid var(--line);color:#857f76;font-family:var(--font-geist-mono);font-size:9px;line-height:1.5}.site-footer p{margin:0}.site-footer strong{color:#afaaa1;font-weight:600}.site-footer span{white-space:nowrap}
 .top-nav button:nth-child(2){font-size:0}.top-nav button:nth-child(2)::after{content:"Experiência";font-size:12px}.resume-heading .content-title{font-size:0}.resume-heading .content-title::after{content:"Minha experiência";font-size:32px;letter-spacing:-.04em}
 @media(max-width:820px){.site-footer{margin:10px 20px 0;align-items:flex-start;flex-direction:column;gap:6px}.site-footer span{white-space:normal}}
+
+/* Mantém a marca da FGV centralizada e com a mesma proporção visual das demais certificações. */
+.certificate-grid>a:last-child .cert-logo img{width:auto;max-width:82%;max-height:82px;transform:none;object-fit:contain}
