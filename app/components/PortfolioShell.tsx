@@ -49,6 +49,11 @@ const skills = [
   { logo: "/logo-javascript.svg", name: "JavaScript", text: "Desenvolvimento de soluções web" },
   { logo: "/logo-html.svg", name: "HTML e CSS", text: "Interfaces responsivas e acessíveis" },
   { logo: "/project-pulse.png", name: "Dashboards", text: "Indicadores, SLA e produtividade" },
+  { logo: "/logo-claude.svg", name: "Claude", text: "Análise, descoberta e apoio à criação de soluções" },
+  { logo: "/logo-lovable.png", name: "Lovable", text: "Criação e evolução rápida de produtos digitais" },
+  { logo: "/logo-codex.svg", name: "Codex", text: "Desenvolvimento assistido e automação técnica" },
+  { logo: "/logo-mongodb.svg", name: "MongoDB", text: "Modelagem, consulta e organização de dados NoSQL" },
+  { logo: "/logo-supabase.svg", name: "Supabase", text: "Banco de dados, autenticação e APIs para aplicações" },
 ];
 
 function SectionTitle({children}:{children:React.ReactNode}) { return <><h1 className="content-title">{children}</h1><span className="title-line" /></>; }
