@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Painel executivo e operacional para acompanhamento dos projetos Project Flow.">
+    <link rel="icon" type="image/png" sizes="500x500" href="/joao-pedro-favicon-large-v4.png">
+    <title>Painel Project Flow</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="brand-mark" aria-hidden="true">PF</div>
+          <div>
+            <p class="eyebrow">Atualização semanal</p>
+            <h1>Painel Project Flow</h1>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <span class="demo-data-pill">Base fictícia carregada</span>
+          <div hidden><input id="fileInput" type="hidden"><button id="downloadTemplate" type="button"></button></div>
+          <button class="primary-button" id="presentationToggle" type="button">
+            <span class="icon" aria-hidden="true">▣</span>
+            Modo apresentação
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero-strip" aria-labelledby="executiveTitle">
+          <div>
+            <p class="eyebrow">Visão executiva dos projetos</p>
+            <h2 id="executiveTitle">Status dos projetos</h2>
+            <p id="executiveSummary">Acompanhe clientes, tarefas e criticidade em uma visão simples para atualização semanal.</p>
+          </div>
+          <aside class="status-pulse" aria-label="Saúde geral dos projetos">
+            <span id="healthDot" class="health-dot low" aria-hidden="true"></span>
+            <strong id="healthLabel">Carregando</strong>
+            <small id="lastUpdate">Base inicial</small>
+          </aside>
+        </section>
+
+        <section class="filters-panel controls-only" aria-label="Filtros e prazos">
+          <label class="search-wrap" for="searchInput">
+            <span class="icon" aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search" placeholder="Buscar cliente, atividade, responsável ou fase" autocomplete="off">
+          </label>
+
+          <div class="deadline-controls">
+            <label>
+              <span>Cliente do prazo</span>
+              <select id="scheduleClientSelect" aria-label="Cliente do prazo"></select>
+            </label>
+            <label>
+              <span>Início do projeto</span>
+              <input id="projectStartInput" type="date">
+            </label>
+            <label>
+              <span>Dias corridos da fase 2</span>
+              <input id="implantationDaysInput" type="number" min="1" step="1">
+            </label>
+            <div class="deadline-result">
+              <span>Fim da fase 2</span>
+              <strong id="implantationDeadline">-</strong>
+            </div>
+          </div>
+        </section>
+
+        <section id="kpiGrid" class="kpi-grid" aria-label="Indicadores principais"></section>
+
+        <section class="workspace-grid">
+          <aside class="panel controls-only">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Clientes</p>
+                <h3>Navegação</h3>
+              </div>
+            </div>
+            <nav id="clientNav" class="client-nav" aria-label="Selecionar cliente"></nav>
+          </aside>
+
+          <article class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Detalhe do cliente</p>
+                <div class="client-heading">
+                  <span id="clientLevelDot" class="client-dot large low" aria-hidden="true"></span>
+                  <h3 id="clientTitle">Todos os clientes</h3>
+                </div>
+                <p id="clientMeta" class="muted"></p>
+              </div>
+            </div>
+
+            <div id="miniSummary" class="mini-summary"></div>
+
+            <section class="phase-panel" aria-labelledby="phaseTitle">
+              <div class="phase-panel-header">
+                <span id="phaseTitle">Progresso por fase</span>
+              </div>
+              <div id="phaseProgress" class="phase-list"></div>
+            </section>
+
+            <section class="next-action" aria-labelledby="nextActionTitle">
+              <span id="nextActionTitle">Próxima ação</span>
+              <div id="clientNextAction"></div>
+            </section>
+          </article>
+        </section>
+
+        <section class="panel" aria-labelledby="tasksTitle">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Tarefas dos projetos</p>
+              <h3 id="tasksTitle">Não iniciadas, em andamento e concluídas</h3>
+            </div>
+          </div>
+          <div id="taskColumns" class="task-columns"></div>
+        </section>
+
+        <section class="panel ticket-panel" aria-labelledby="ticketsTitle">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Tickets Project Flow</p>
+              <h3 id="ticketsTitle">Tabela por número e referência</h3>
+            </div>
+          </div>
+          <div id="referenceMonths" class="reference-months" aria-label="Referências mensais"></div>
+          <div id="ticketTable" class="ticket-table-wrap"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
