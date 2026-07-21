@@ -34,6 +34,16 @@ test("keeps project demos and CV download available", async () => {
   await Promise.all(assets.map((asset) => access(new URL(asset, import.meta.url))));
 });
 
+test("loads Project Flow assets from stable absolute paths", async () => {
+  const projectFlow = await readFile(
+    new URL("../public/exact-demos/project-flow/index.html", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(projectFlow, /href="\/exact-demos\/project-flow\/styles\.css"/);
+  assert.match(projectFlow, /src="\/exact-demos\/project-flow\/app\.js"/);
+});
+
 test("shows SaaS and the Product Discovery methodologies", async () => {
   const component = await readFile(
     new URL("../app/components/PortfolioShell.tsx", import.meta.url),
