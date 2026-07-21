@@ -67,3 +67,42 @@ test("shows SaaS and the Product Discovery methodologies", async () => {
 
   await Promise.all(icons.map((icon) => access(new URL(icon, import.meta.url))));
 });
+
+test("organizes skills by professional area and uses the Codex product icon", async () => {
+  const [component, styles] = await Promise.all([
+    readFile(new URL("../app/components/PortfolioShell.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+
+  for (const group of [
+    "Produto e agilidade",
+    "Dados e métricas",
+    "Integrações e backend",
+    "Inteligência artificial",
+    "Desenvolvimento e colaboração técnica",
+  ]) {
+    assert.ok(component.includes(`title: "${group}"`));
+  }
+
+  for (const skill of [
+    "Product Ownership",
+    "Scrum e Kanban",
+    "Dashboards",
+    "SQL",
+    "APIs REST",
+    "MongoDB",
+    "Supabase",
+    "Claude",
+    "Codex",
+    "Lovable",
+    "GitHub",
+    "JavaScript",
+    "HTML e CSS",
+  ]) {
+    assert.ok(component.includes(`name: "${skill}"`));
+  }
+
+  assert.match(component, /logo: "\/logo-codex\.png", name: "Codex"/);
+  assert.doesNotMatch(styles, /article:last-child:nth-child\(odd\).*grid-column:1\/-1/);
+  await access(new URL("../public/logo-codex.png", import.meta.url));
+});

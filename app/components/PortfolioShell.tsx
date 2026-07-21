@@ -67,20 +67,30 @@ const productTools = [
 
 const agileCeremonies = ["Planning", "Daily", "Refinamento", "Review", "Retrospectiva"];
 
-const skills = [
-  { logo: "/badge-cspo.png", name: "Product Ownership", text: "Visão, estratégia, roadmap e priorização" },
-  { logo: "/logo-jira.svg", name: "Scrum e Kanban", text: "Fluxo, cerimônias e melhoria contínua" },
-  { logo: "/logo-api.svg", name: "APIs REST", text: "Contratos, payloads, logs e homologação" },
-  { logo: "/logo-sql.svg", name: "SQL", text: "Consultas, análise e validação de dados" },
-  { logo: "/logo-github.svg", name: "GitHub", text: "Versionamento e colaboração técnica" },
-  { logo: "/logo-javascript.svg", name: "JavaScript", text: "Desenvolvimento de soluções web" },
-  { logo: "/logo-html.svg", name: "HTML e CSS", text: "Interfaces responsivas e acessíveis" },
-  { logo: "/project-pulse.png", name: "Dashboards", text: "Indicadores, SLA e produtividade" },
-  { logo: "/logo-claude.svg", name: "Claude", text: "Análise, descoberta e apoio à criação de soluções" },
-  { logo: "/logo-lovable.png", name: "Lovable", text: "Criação e evolução rápida de produtos digitais" },
-  { logo: "/logo-codex.svg", name: "Codex", text: "Desenvolvimento assistido e automação técnica" },
-  { logo: "/logo-mongodb.svg", name: "MongoDB", text: "Modelagem, consulta e organização de dados NoSQL" },
-  { logo: "/logo-supabase.svg", name: "Supabase", text: "Banco de dados, autenticação e APIs para aplicações" },
+const skillGroups = [
+  { title: "Produto e agilidade", skills: [
+    { logo: "/badge-cspo.png", name: "Product Ownership", text: "Visão, estratégia, roadmap e priorização" },
+    { logo: "/logo-jira.svg", name: "Scrum e Kanban", text: "Fluxo, cerimônias e melhoria contínua" },
+  ] },
+  { title: "Dados e métricas", skills: [
+    { logo: "/project-pulse.png", name: "Dashboards", text: "Indicadores, SLA e produtividade" },
+    { logo: "/logo-sql.svg", name: "SQL", text: "Consultas, análise e validação de dados" },
+  ] },
+  { title: "Integrações e backend", skills: [
+    { logo: "/logo-api.svg", name: "APIs REST", text: "Contratos, payloads, logs e homologação" },
+    { logo: "/logo-mongodb.svg", name: "MongoDB", text: "Modelagem, consulta e organização de dados NoSQL" },
+    { logo: "/logo-supabase.svg", name: "Supabase", text: "Banco de dados, autenticação e APIs para aplicações" },
+  ] },
+  { title: "Inteligência artificial", skills: [
+    { logo: "/logo-claude.svg", name: "Claude", text: "Análise, descoberta e apoio à criação de soluções" },
+    { logo: "/logo-codex.png", name: "Codex", text: "Desenvolvimento assistido e automação técnica" },
+    { logo: "/logo-lovable.png", name: "Lovable", text: "Criação e evolução rápida de produtos digitais" },
+  ] },
+  { title: "Desenvolvimento e colaboração técnica", skills: [
+    { logo: "/logo-github.svg", name: "GitHub", text: "Versionamento e colaboração técnica" },
+    { logo: "/logo-javascript.svg", name: "JavaScript", text: "Desenvolvimento de soluções web" },
+    { logo: "/logo-html.svg", name: "HTML e CSS", text: "Interfaces responsivas e acessíveis" },
+  ] },
 ];
 
 function SectionTitle({children}:{children:React.ReactNode}) { return <><h1 className="content-title">{children}</h1><span className="title-line" /></>; }
@@ -93,7 +103,7 @@ function About(){return <div className="content-page"><SectionTitle>Sobre mim</S
 
 function Resume(){const [selected,setSelected]=useState(0);const [resumeView,setResumeView]=useState<"Experiência"|"Skills">("Experiência");const item=experiences[selected];return <div className="content-page"><div className="resume-heading"><div><SectionTitle>Currículo</SectionTitle></div><a href="/Joao-Pedro-Quintas-CV.pdf" download className="download-button">Baixar currículo <span>↓</span></a></div><div className="resume-switch" role="tablist" aria-label="Conteúdo do currículo"><button role="tab" aria-selected={resumeView==="Experiência"} className={resumeView==="Experiência"?"active":""} onClick={()=>setResumeView("Experiência")}>Experiência</button><button role="tab" aria-selected={resumeView==="Skills"} className={resumeView==="Skills"?"active":""} onClick={()=>setResumeView("Skills")}>Skills</button></div>{resumeView==="Experiência"?<><div className="resume-summary"><b>Product Owner</b><span>Produtos digitais B2B • SaaS • APIs • Dashboards • Agile</span><p>Experiência em roadmap, backlog, requisitos, cerimônias, integrações, logs, SLA, chamados, bugs, métricas e produtividade.</p></div><h2 className="sub-title">Experiência</h2><div className="resume-tabs"><nav aria-label="Experiências profissionais">{experiences.map((exp,index)=><button key={exp.company} className={selected===index?"active":""} onClick={()=>setSelected(index)}><span>{String(index+1).padStart(2,"0")}</span>{exp.company}</button>)}</nav><article><span className="job-company">{item.company}</span><h2>{item.role}</h2><time>{item.period}</time><p>{item.intro}</p><ul>{item.bullets.map(b=><li key={b}>{b}</li>)}</ul></article></div><ExperienceResources company={item.company}/></>:<Skills/>}</div>}
 
-function Skills(){return <div className="skills-view"><div className="skills-heading"><span>Habilidades</span><h2>Técnicas e de produto</h2><p>Conhecimentos que conectam estratégia, operação, dados e desenvolvimento.</p></div><div className="skills-grid focus-group">{skills.map(skill=><article key={skill.name}><span><img src={skill.logo} alt={`Logo ${skill.name}`} /></span><div><h3>{skill.name}</h3><p>{skill.text}</p></div></article>)}</div><h2 className="sub-title">Ferramentas de gestão</h2><div className="management-skills focus-group">{productTools.map(tool=><article key={tool.name}><img src={tool.logo} alt={`Logo ${tool.name}`} /><div><h3>{tool.name}</h3><p>Organização, acompanhamento e colaboração</p></div></article>)}</div></div>}
+function Skills(){return <div className="skills-view"><div className="skills-heading"><span>Habilidades</span><h2>Técnicas e de produto</h2><p>Conhecimentos que conectam estratégia, operação, dados e desenvolvimento.</p></div><div className="skill-groups">{skillGroups.map(group=><section className="skill-group" key={group.title}><h3 className="skill-group-title">{group.title}</h3><div className="skills-grid focus-group">{group.skills.map(skill=><article key={skill.name} data-skill={skill.name}><span><img src={skill.logo} alt={`Logo ${skill.name}`} /></span><div><h3>{skill.name}</h3><p>{skill.text}</p></div></article>)}</div></section>)}</div><h2 className="sub-title">Ferramentas de gestão</h2><div className="management-skills focus-group">{productTools.map(tool=><article key={tool.name}><img src={tool.logo} alt={`Logo ${tool.name}`} /><div><h3>{tool.name}</h3><p>Organização, acompanhamento e colaboração</p></div></article>)}</div></div>}
 
 function Projects(){return <div className="content-page"><SectionTitle>Projetos</SectionTitle><div className="section-note project-note"><p>Soluções que desenvolvi para apoiar a tomada de decisão, identificar gargalos na operação, orientar a evolução de produtos e tornar mais previsível a implantação para novos clientes.</p><p>As demonstrações mantêm os principais fluxos e funcionalidades, com dados, nomes e métricas fictícios para garantir a confidencialidade das informações.</p></div><div className="portfolio-grid focus-group">{projects.map(project=><article key={project.slug}><div className="project-cover"><span className="project-number">{project.number}</span><img src={project.image} alt={`Tela do sistema ${project.name}`} /><a className="project-hover" href={`/exact-demos/${project.slug}/`} target="_blank" rel="noreferrer" aria-label={`Visualizar demonstração ${project.name}`}><b>◉</b><small>Visualizar demo</small></a></div><div className="project-info"><span>{project.category}</span><h2>{project.name}</h2><p>{project.text}</p></div></article>)}</div></div>}
 
