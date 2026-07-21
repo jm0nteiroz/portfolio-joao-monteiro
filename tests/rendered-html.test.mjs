@@ -33,3 +33,26 @@ test("keeps project demos and CV download available", async () => {
 
   await Promise.all(assets.map((asset) => access(new URL(asset, import.meta.url))));
 });
+
+test("shows SaaS and the Product Discovery methodologies", async () => {
+  const component = await readFile(
+    new URL("../app/components/PortfolioShell.tsx", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(component, /<span>SaaS<\/span>/);
+  assert.match(component, /Design Sprint by Google/);
+  assert.match(component, /User Story Mapping/);
+  assert.match(component, /Tanque de Decantação/);
+  assert.match(component, /Agile Design Thinking/);
+  assert.match(component, /<h2 className="sub-title education-title">Formação<\/h2>/);
+
+  const icons = [
+    "../public/method-google.svg",
+    "../public/method-story-map.svg",
+    "../public/method-decantation.svg",
+    "../public/method-design-thinking.svg",
+  ];
+
+  await Promise.all(icons.map((icon) => access(new URL(icon, import.meta.url))));
+});
